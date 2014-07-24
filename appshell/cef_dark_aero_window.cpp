@@ -50,12 +50,12 @@ HINSTANCE CDwmDLL::LoadLibrary()
     if (mhDwmDll == NULL)
     {
         // dynamically load dwmapi.dll if running Windows Vista or later (ie. not on XP)
-        OSVERSIONINFO osvi;
-        ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
-        osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-        GetVersionEx(&osvi);
-        if ((osvi.dwMajorVersion > 5) || ((osvi.dwMajorVersion == 5) && (osvi.dwMinorVersion >= 1) ))
-        {
+        //OSVERSIONINFO osvi;
+        //ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
+        //osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+        //GetVersionEx(&osvi);
+        //if ((osvi.dwMajorVersion > 5) || ((osvi.dwMajorVersion == 5) && (osvi.dwMinorVersion >= 1) ))
+        //{
             mhDwmDll = ::LoadLibrary(TEXT("dwmapi.dll"));
             if (mhDwmDll != NULL)
             {
@@ -63,7 +63,7 @@ HINSTANCE CDwmDLL::LoadLibrary()
                 pfnDwmDefWindowProc = (PFNDWMDWP)::GetProcAddress(mhDwmDll, "DwmDefWindowProc");
                 pfnDwmIsCompositionEnabled = (PFNDWMICE)::GetProcAddress(mhDwmDll, "DwmIsCompositionEnabled");
             }
-        }
+        //}
     }
     return mhDwmDll;
 }
